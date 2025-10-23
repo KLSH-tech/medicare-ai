@@ -17,6 +17,7 @@ import './assets/prism.css';
 import Loading from './ai-chat/pages/Loading';
 import Login from './ai-chat/pages/Login';
 import ProtectedRoute from './components/ProtectedRoute';
+import {Toaster} from 'react-hot-toast'
 
 // Landing Page Layout
 const LandingPageLayout = () => {
@@ -57,6 +58,7 @@ const AppLayout = () => {
 
   return (
     <>
+    <Toaster />
       {!isMenuOpen && (
         <img 
           src={assets.menu_icon}
