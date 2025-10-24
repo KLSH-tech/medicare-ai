@@ -18,7 +18,7 @@ export const registerUser = async (req, res) => {
     const userExists = await User.findOne({ email })
 
     if (userExists) {
-      // ✅ Return 400 status code for client errors
+      //  Return 400 status code for client errors
       return res.status(400).json({ success: false, message: "User already exists" })
     }
 
@@ -26,12 +26,12 @@ export const registerUser = async (req, res) => {
       name, 
       email, 
       password,
-      credits: "5" // ✅ Give initial credits
+      credits: "5" // Give initial credits
     })
 
     const token = generateToken(user._id)
     
-    // ✅ Return user data along with token
+    // Return user data along with token
     res.status(201).json({ 
       success: true, 
       token,
@@ -55,7 +55,7 @@ export const loginUser = async (req, res) => {
     const user = await User.findOne({ email })
     
     if (!user) {
-      // ✅ Return 401 for authentication failures
+      // Return 401 for authentication failures
       return res.status(401).json({ 
         success: false, 
         message: "Invalid email or password" 
@@ -65,7 +65,7 @@ export const loginUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password)
 
     if (!isMatch) {
-      // ✅ Return 401 for wrong password
+      // Return 401 for wrong password
       return res.status(401).json({ 
         success: false, 
         message: "Invalid email or password" 
@@ -74,7 +74,7 @@ export const loginUser = async (req, res) => {
 
     const token = generateToken(user._id);
     
-    // ✅ Return user data along with token
+    //  Return user data along with token
     return res.status(200).json({ 
       success: true, 
       token,
@@ -99,7 +99,7 @@ export const getUser = async (req, res) => {
       return res.status(404).json({ success: false, message: "User not found" })
     }
     
-    // ✅ Return clean user object without password
+    // Return clean user object without password
     return res.status(200).json({ 
       success: true, 
       user: {
@@ -121,7 +121,7 @@ export const getPublishedImages = async (req, res) => {
       { $unwind: "$messages" },
       {
         $match: {
-          "messages.isImage": true, // ✅ Fixed: was "message" should be "messages"
+          "messages.isImage": true, 
           "messages.isPublished": true
         }
       },

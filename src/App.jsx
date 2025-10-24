@@ -16,8 +16,9 @@ import { assets } from './ai-chat/assets/assets';
 import './assets/prism.css';
 import Loading from './ai-chat/pages/Loading';
 import Login from './ai-chat/pages/Login';
+import LoadingPage from './ai-chat/pages/LoadingPage';
 import ProtectedRoute from './components/ProtectedRoute';
-import {Toaster} from 'react-hot-toast'
+import { Toaster } from 'react-hot-toast'
 
 // Landing Page Layout
 const LandingPageLayout = () => {
@@ -58,7 +59,7 @@ const AppLayout = () => {
 
   return (
     <>
-    <Toaster />
+      <Toaster />
       {!isMenuOpen && (
         <img 
           src={assets.menu_icon}
@@ -102,6 +103,9 @@ const App = () => {
         {/* Public Routes */}
         <Route path="/" element={<LandingPageLayout />} />
         <Route path="/login" element={<Login />} />
+        
+        {/* ✅ ADD LOADING PAGE ROUTE - Must be outside protected routes */}
+        <Route path="/loading" element={<LoadingPage />} />
         
         {/* Protected Routes with Sidebar Layout */}
         <Route element={

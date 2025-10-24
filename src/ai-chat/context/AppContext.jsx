@@ -17,7 +17,7 @@ export const AppContextProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [loadingUser, setLoadingUser] = useState(true);
 
-  // ✅ Configure axios to automatically add Bearer token to all requests
+  // Configure axios to automatically add Bearer token to all requests
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -28,20 +28,20 @@ export const AppContextProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      // ✅ No need to pass Authorization header manually now
+      //  No need to pass Authorization header manually now
       const { data } = await axios.get('/api/user/data');
       if (data.success) {
         setUser(data.user);
       } else {
         toast.error(data.message);
-        // ✅ Clear invalid token
+        // Clear invalid token
         localStorage.removeItem('token');
         setToken(null);
       }
     } catch (error) {
       console.error('Fetch user error:', error);
       toast.error(error.response?.data?.message || error.message);
-      // ✅ Clear invalid token
+      // Clear invalid token
       localStorage.removeItem('token');
       setToken(null);
     } finally {
