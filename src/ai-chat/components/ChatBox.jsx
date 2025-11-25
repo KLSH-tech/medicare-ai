@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { assets } from '../assets/assets';  
 import Message from './Message';  
+import toast from 'react-hot-toast';
 
 const ChatBox = () => {
-
   const containerRef = useRef(null)
   const { selectedChat, theme, user, axios, token, setUser, } = useAppContext();
   const [messages, setMessages] = useState([]);
@@ -58,10 +58,10 @@ const ChatBox = () => {
   },[messages])
 
   return (
-    <div className='flex-1 flex flex-col h-screen max-md:mt-14 bg-white dark:bg-[#1A1A2E]'>
+    <div className='flex flex-col h-screen max-md:mt-14 bg-white dark:bg-[#1A1A2E]'>
       
       {/* Chat Messages */}
-      <div ref={containerRef} className='flex-1 overflow-y-auto m-5 md:m-10 xl:mx-30 2xl:pr-40 mb-0'>
+      <div ref={containerRef} className='flex-1 overflow-y-auto px-4 md:px-10 xl:px-30 2xl:pr-40 pt-5 pb-32 md:pb-5'>
         {messages.length === 0 && (
           <div className='h-full flex flex-col items-center justify-center gap-2 text-primary'>
             <img 
@@ -88,23 +88,29 @@ const ChatBox = () => {
         )}
       </div>
 
-      {mode === 'image' && (
-        <label className="inline-flex items-center gap-2 mb-3 text-sm mx-auto">
-          <p className='text-xs'>Publish Generated Image to Community </p>
-          <input type="checkbox" className='cursor-pointer' checked={isPublished} 
-          onChange={(e)=>setIsPublished(e.target.checked)}/>
-        </label>
-      )}
+      {/* Input Section - Fixed at bottom on mobile */}
+      <div className='fixed md:relative bottom-0 left-0 right-0 bg-white dark:bg-[#1A1A2E] border-t border-gray-200 dark:border-white/20 md:border-t-0 pb-safe'>
+        {mode === 'image' && (
+          <label className="flex items-center justify-center gap-2 py-2 text-sm">
+            <p className='text-xs dark:text-white'>Publish Generated Image to Community</p>
+            <input 
+              type="checkbox" 
+              className='cursor-pointer' 
+              checked={isPublished} 
+              onChange={(e)=>setIsPublished(e.target.checked)}
+            />
+          </label>
+        )}
 
-     {/* {Prompt input box} */}
+        {/* Prompt input box */}
         <form 
           onSubmit={onSubmit} 
-          className='flex items-center gap-4 p-3 border mb-5 w-full max-w-4xl pl-4 mx-auto border-gray-300 dark:border-white/20 rounded-full bg-white dark:bg-[#1A1A2E]'
+          className='flex items-center gap-2 md:gap-4 p-3 mx-3 md:mx-auto mb-3 md:mb-5 w-auto md:max-w-4xl border border-gray-300 dark:border-white/20 rounded-full bg-white dark:bg-[#1A1A2E]'
         >
           <select 
             onChange={(e) => setMode(e.target.value)} 
             value={mode}
-            className='text-sm pl-3 pr-2 outline-none bg-transparent text-gray-900 dark:text-white'
+            className='text-xs md:text-sm pl-2 md:pl-3 pr-1 md:pr-2 outline-none bg-transparent text-gray-900 dark:text-white'
           >
             <option className='dark:bg-purple-900' value="text">Text</option>
             <option className='dark:bg-purple-900' value="image">Image</option>
@@ -114,19 +120,19 @@ const ChatBox = () => {
             value={prompt} 
             type="text" 
             placeholder="Type your prompt here..." 
-            className='flex-1 w-full text-sm outline-none bg-transparent text-gray-900 dark:text-white' 
+            className='flex-1 text-sm outline-none bg-transparent text-gray-900 dark:text-white min-w-0' 
             required
           />
-          <button disabled={loading} type="submit">
+          <button disabled={loading} type="submit" className='flex-shrink-0'>
             <img 
               src={loading ? assets.stop_icon : assets.send_icon} 
-              className='w-8 cursor-pointer' 
+              className='w-7 md:w-8 cursor-pointer' 
               alt="" 
             />
           </button>
         </form>
       </div>
-   
+    </div>
   );
 };
 
