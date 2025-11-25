@@ -6,7 +6,7 @@ import Button from "./Button";
 import MenuSvg from "../assets/svg/MenuSvg";
 import { HamburgerMenu } from "./design/Header";
 import { useState } from "react";
-import { useAppContext } from "../ai-chat/context/AppContext";
+import { useAppContext } from "../ai-chat/context/AppContext";          
 
 const Header = () => {
   const pathname = useLocation();
