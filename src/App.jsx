@@ -16,9 +16,12 @@ import { assets } from './ai-chat/assets/assets';
 import './assets/prism.css';
 import Loading from './ai-chat/pages/Loading';
 import Login from './ai-chat/pages/Login';
+import ForgotPassword from './ai-chat/pages/ForgotPassword';
+import ResetPassword from './ai-chat/pages/ResetPassword';
 import LoadingPage from './ai-chat/pages/LoadingPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { Toaster } from 'react-hot-toast'
+
 
 // Landing Page Layout
 const LandingPageLayout = () => {
@@ -37,11 +40,13 @@ const LandingPageLayout = () => {
   );
 };
 
+
 // Shared Layout with Sidebar (for Chat, Community, Credits)
 const AppLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLoading, setShowLoading] = useState(true);
   const location = useLocation();
+
 
   // Show loading on route change
   useEffect(() => {
@@ -50,12 +55,15 @@ const AppLayout = () => {
       setShowLoading(false);
     }, 500); 
 
+
     return () => clearTimeout(timer);
   }, [location.pathname]);
+
 
   if (showLoading) {
     return <Loading duration={800} />; // Pass shorter duration
   }
+
 
   return (
     <>
@@ -80,8 +88,10 @@ const AppLayout = () => {
   );
 };
 
+
 const App = () => {
   const [initialLoading, setInitialLoading] = useState(true);
+
 
   // Initial loading when app first mounts - KEEP THIS LONGER
   useEffect(() => {
@@ -89,13 +99,16 @@ const App = () => {
       setInitialLoading(false);
     }, 2500); // Keep initial load at 2.5 seconds
 
+
     return () => clearTimeout(timer);
   }, []);
+
 
   // Show loading screen on initial app load
   if (initialLoading) {
     return <Loading duration={2500} />;
   }
+
 
   return (
     <>
@@ -103,8 +116,10 @@ const App = () => {
         {/* Public Routes */}
         <Route path="/" element={<LandingPageLayout />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
         
-        {/* ✅ ADD LOADING PAGE ROUTE - Must be outside protected routes */}
+        {/* Loading Page Route */}
         <Route path="/loading" element={<LoadingPage />} />
         
         {/* Protected Routes with Sidebar Layout */}
@@ -118,6 +133,7 @@ const App = () => {
           <Route path="/credits" element={<Credits />} />
         </Route>
 
+
         {/* Catch all */}
         <Route path="*" element={<LandingPageLayout />} />
       </Routes>
@@ -125,5 +141,6 @@ const App = () => {
     </>
   );
 };
+
 
 export default App;

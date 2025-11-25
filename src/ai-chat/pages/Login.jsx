@@ -187,15 +187,17 @@ const Login = () => {
                 </div>
 
                 {state === "login" && (
-                  <div className="text-right">
-                    <button
-                      type="button"
-                      className="caption text-color-1 hover:text-color-5 transition-colors duration-300"
-                    >
-                      Forgot password?
-                    </button>
-                  </div>
-                )}
+  <div className="text-right">
+    <button
+      type="button"
+      onClick={() => navigate('/forgot-password')}  // ← ADD THIS
+      className="caption text-color-1 hover:text-color-5 transition-colors duration-300"
+    >
+      Forgot password?
+    </button>
+  </div>
+)}
+
               </div>
 
               <button
