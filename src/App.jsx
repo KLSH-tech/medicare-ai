@@ -12,6 +12,7 @@ import Hero from "./components/Hero";
 import Services from "./components/Services";
 import Community from "./ai-chat/pages/Community";
 import SideBar from "./ai-chat/components/SideBar";
+import ResourceMap from "./components/ResourceMap";  // ← ADD THIS
 import { assets } from './ai-chat/assets/assets';
 import './assets/prism.css';
 import Loading from './ai-chat/pages/Loading';
@@ -54,7 +55,6 @@ const AppLayout = () => {
     const timer = setTimeout(() => {
       setShowLoading(false);
     }, 500); 
-
 
     return () => clearTimeout(timer);
   }, [location.pathname]);
@@ -99,7 +99,6 @@ const App = () => {
       setInitialLoading(false);
     }, 2500); // Keep initial load at 2.5 seconds
 
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -131,8 +130,8 @@ const App = () => {
           <Route path="/chat" element={<ChatBox />} />
           <Route path="/community" element={<Community />} />
           <Route path="/credits" element={<Credits />} />
+          <Route path="/resource-map" element={<ResourceMap />} />  {/* ← ADD THIS */}
         </Route>
-
 
         {/* Catch all */}
         <Route path="*" element={<LandingPageLayout />} />
@@ -141,6 +140,5 @@ const App = () => {
     </>
   );
 };
-
 
 export default App;

@@ -138,6 +138,16 @@ const SideBar = ({ isMenuOpen, setIsMenuOpen }) => {
           </div>
         </div>
 
+        {/* {Resource Map} */}
+<div onClick={()=>{navigate('/resource-map'); setIsMenuOpen(false)}} className='flex items-center gap-2 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md cursor-pointer hover:scale-103 transition-all'>
+  <img src={assets.map_icon} className='w-5 invert dark:invert-0' alt="" />
+  <div className='flex flex-col text-sm'>
+    <p>Resource Map</p>
+    <p className='text-xs text-gray-400'>Find nearby medical facilities</p>
+  </div>
+</div>
+
+
         {/* {Credit Option} */}
         <div onClick={()=>{navigate('/credits'); setIsMenuOpen(false)}} className='flex items-center gap-2 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md cursor-pointer hover:scale-103 transition-all'>
           <img src={assets.diamond_icon} className='w-5 dark:invert' alt="" />
@@ -146,6 +156,8 @@ const SideBar = ({ isMenuOpen, setIsMenuOpen }) => {
             <p className='text-xs text-gray-400'>Purchase credits to access more Features</p>
           </div>
         </div>
+
+        
 
         {/* [dark mode toggle] */}
         <div className='flex items-center justify-between gap-2 p-3 mt-4 border border-gray-300 dark:border-white/15 rounded-md '>

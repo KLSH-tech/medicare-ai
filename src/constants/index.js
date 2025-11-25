@@ -55,7 +55,7 @@ export const navigation = [
   {
     id: "3",
     title: "Resource Map",
-    url: "#map",
+    url: "/resource-map",
   },
   {
     id: "5",
