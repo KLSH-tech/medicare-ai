@@ -1,0 +1,134 @@
+───────────────────────────────────────────────────────────
+            MEDICARE AI - PROJECT INSTALLATION GUIDE
+───────────────────────────────────────────────────────────
+
+A. GENERAL REQUIREMENTS
+
+1. Install Git
+   - Download from https://git-scm.com/
+   - Confirm with:
+     git --version
+
+2. Install Node.js and npm
+   - Download from https://nodejs.org/ (v18 or newer is recommended)
+   - Confirm with:
+     node -v
+     npm -v
+
+3. (Optional) Install Yarn
+   - npm install --global yarn
+   - Confirm with:
+     yarn -v
+
+4. Install a code editor (recommended: VS Code)
+   - Download from https://code.visualstudio.com/
+
+───────────────────────────────────────────────────────────
+
+B. DOWNLOAD & PREPARE THE PROJECT
+
+1. Clone this repository:
+   git clone <your-repo-url>
+   cd medicare-ai
+
+───────────────────────────────────────────────────────────
+
+C. BACKEND SETUP
+
+1. Go to the backend/server folder:
+   cd server
+
+2. Install backend dependencies:
+   npm install
+
+───────────────────────────────────────────────────────────
+
+D. FRONTEND SETUP
+
+1. Go to the frontend folder (or project root if React is at root):
+   cd ../     (or cd ../client or cd ../src etc, adjust as needed)
+
+2. Install frontend dependencies:
+   npm install
+
+3. (If applicable/setup not yet done)
+   npm install vite --save-dev
+
+───────────────────────────────────────────────────────────
+
+E. PROJECT DEPENDENCIES
+
+The main libraries/packages are installed automatically by `npm install`. But for reference, here are important ones:
+
+- Backend (`server/package.json`):
+    express, mongoose, bcryptjs, jsonwebtoken, dotenv, cors, stripe, axios
+
+- Frontend (`package.json`):
+    react, react-dom, react-router-dom, axios, tailwindcss, postcss, autoprefixer,
+    react-hot-toast, react-icons, vite
+
+───────────────────────────────────────────────────────────
+
+F. TAILWIND CSS SETUP (if not yet pre-configured)
+
+   npm install -D tailwindcss postcss autoprefixer
+   npx tailwindcss init -p
+
+───────────────────────────────────────────────────────────
+
+G. ENVIRONMENT VARIABLES
+
+Create `.env` files in both the frontend and backend.
+
+Backend (`server/.env`):
+-------------------------------------------------
+MONGO_URI=your_mongodb_connection_string
+STRIPE_SECRET_KEY=your_stripe_secret_key
+JWT_SECRET=your_super_secret
+GEMINI_API_KEY=your_google_gemini_api_key
+IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key    # if used
+IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
+IMAGEKIT_URL_ENDPOINT=your_imagekit_url
+VITE_SERVER_URL=http://localhost:4000
+-------------------------------------------------
+
+Frontend (`.env` or `client/.env` if applicable):
+-------------------------------------------------
+VITE_SERVER_URL=http://localhost:4000
+-------------------------------------------------
+
+───────────────────────────────────────────────────────────
+
+H. DATABASE SETUP
+
+- Use a MongoDB Atlas cloud database or install MongoDB locally.
+- Obtain your connection string and set as `MONGO_URI` in the backend `.env`.
+
+───────────────────────────────────────────────────────────
+
+I. STARTING THE PROJECT (Development Mode)
+
+1. Start the backend:
+   cd server
+   npm run dev    (or npm start)
+
+2. Start the frontend (Vite/React):
+   cd <path-to-frontend>
+   npm run dev
+
+- The app should open on http://localhost:5173 (adjust port if needed)
+
+───────────────────────────────────────────────────────────
+
+J. OPTIONAL TOOLS
+
+- Stripe CLI (for webhook testing): https://stripe.com/docs/stripe-cli#install
+- MongoDB Compass (Graphical DB): https://www.mongodb.com/products/compass
+- Postman or Thunder Client (API testing)
+
+───────────────────────────────────────────────────────────
+
+All core dependencies and project scripts are handled via `npm install` and the above commands.
+If you have any issues, check your `.env` configuration, MongoDB connection, and Node.js versions.
+
+───────────────────────────────────────────────────────────
