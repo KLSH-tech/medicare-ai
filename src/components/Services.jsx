@@ -128,7 +128,7 @@ const Services = () => {
           <Gradient />
         </div>
         <div className="flex justify-center mt-12 md:mt-15 xl:mt-20">
-        <Button href="#map">Our Resource Map</Button>
+        <Button href="/resource-map">Our Resource Map</Button>
       </div>
       </div>
     </Section>
